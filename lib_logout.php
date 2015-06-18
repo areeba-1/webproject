@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['librarian']))
+if(!isset($_SESSION['librarians']))
 {
 	header("Location: lib_index.php");
 }
 
-else if(isset($_SESSION['librarian'])!="")
+else if(isset($_SESSION['librarians'])!="")
 {
 	header("Location: lib_home.php");
 }
@@ -14,7 +14,7 @@ else if(isset($_SESSION['librarian'])!="")
 if(isset($_GET['logout']))
 {
 	session_destroy();
-	unset($_SESSION['librarian']);
+	unset($_SESSION['librarians']);
 	header("Location: lib_index.php");
 }
 ?>
