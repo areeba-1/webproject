@@ -1,19 +1,21 @@
-
 <?php
 session_start();
-if(isset($_SESSION['librarian'])!="")
+if(isset($_SESSION['librarians'])!="")
 {
 	header("Location: lib_home.php");
 }
 include_once 'dbconnect.php';
 
-if(isset($_POST['btn-signup']))
+if(isset($_POST['signup']))
 {
-	$lname = mysql_real_escape_string($_POST['lname']);
-	$email = mysql_real_escape_string($_POST['email']);
-	$lpass = mysql_real_escape_string($_POST['pass']);
+	$lname = mysql_real_escape_string($_POST['l_name']);
+	$lemail = mysql_real_escape_string($_POST['email']);
+	$lpass = mysql_real_escape_string($_POST['password']);
+	$laddress = mysql_real_escape_string($_POST['address']);
+	$lcontact = mysql_real_escape_string($_POST['contact']);
 	
-	if(mysql_query("INSERT INTO librarian(lib_name,email,password) VALUES('$lname','$email','$lpass')"))
+	
+	if(mysql_query("INSERT INTO librarians(l_name, email, password, address, contact) VALUES('$lname','$lemail','$lpass', '$laddress', '$lcontact')"))
 	{
 		?>
         <script>alert('Successfully Registered ');</script>
@@ -32,32 +34,41 @@ if(isset($_POST['btn-signup']))
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>LogIn</title>
+<title>SignUp</title>
 <link rel="stylesheet" href="style.css" type="text/css" />
 
 </head>
 <body>
 <center>
 <div id="login-form">
-<h2> Librarian Log In Form </h2> <br/>
+<h2> Librarian Sign Up Form </h2> <br/>
 <form method="post">
 
 <table align="center" width="30%" border="0">
 
 <tr>
-<td><input type="text" name="lname" placeholder="User Name" required /></td>
+<td><input type="text" name="l_name" placeholder="Your Name" required /></td>
 </tr>
 
 <tr>
-<td><input type="email" name="email" placeholder="Your Email" required /></td>
+<td><input type="text" name="email" placeholder="Your Email" required /></td>
 </tr>
 
 <tr>
-<td><input type="password" name="pass" placeholder="Your Password" required /></td>
+<td><input type="text" name="password" placeholder="Your Password" required /></td>
 </tr>
 
 <tr>
-<td><button type="submit" name="btn-signup">Sign Me Up</button></td>
+<td><input type="text" name="address" placeholder="Your Address" required /></td>
+</tr>
+
+<tr>
+<td><input type="number" name="contact" placeholder="Your Contact" required /></td>
+</tr>
+
+
+<tr>
+<td><button type="submit" name="signup">Sign Me Up</button></td>
 </tr>
 
 <tr>
