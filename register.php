@@ -1,18 +1,23 @@
 <?php
 session_start();
-if(isset($_SESSION['user'])!="")
+if(isset($_SESSION['members'])!="")
 {
 	header("Location: home.php");
 }
 include_once 'dbconnect.php';
 
-if(isset($_POST['btn-signup']))
+if(isset($_POST['signup']))
 {
-	$uname = mysql_real_escape_string($_POST['uname']);
-	$email = mysql_real_escape_string($_POST['email']);
-	$upass = mysql_real_escape_string($_POST['pass']);
+	$mname = mysql_real_escape_string($_POST['m_name']);
+	$gen = mysql_real_escape_string($_POST['gender']);
+	$memail = mysql_real_escape_string($_POST['email']);
+	$mpass = mysql_real_escape_string($_POST['password']);
+	$mcontact = mysql_real_escape_string($_POST['contact']);
+	$mDOB = mysql_real_escape_string($_POST['DOB']);
+	$maddress = mysql_real_escape_string($_POST['address']);
 	
-	if(mysql_query("INSERT INTO user(username,email,password) VALUES('$uname','$email','$upass')"))
+	
+	if(mysql_query("INSERT INTO members(m_name, gender, email, password, contact, DOB, address) VALUES('$mname', '$gen','$memail','$mpass','$mcontact','$mDOB','$maddress')"))
 	{
 		?>
         <script>alert('Successfully Registered ');</script>
@@ -30,32 +35,51 @@ if(isset($_POST['btn-signup']))
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>LogIn</title>
+<title>SignUp</title>
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
 <center>
 
 <div id="login-form">
-<h2> User Log In Form </h2> <br/>
+<h2> Member Sign Up Form </h2> <br/>
 <form method="post">
 
 <table align="center" width="30%" border="0">
 
 <tr>
-<td><input type="text" name="uname" placeholder="User Name" required /></td>
+<td><input type="text" name="m_name" placeholder="Your Name" required /></td>
 </tr>
 
 <tr>
-<td><input type="email" name="email" placeholder="Your Email" required /></td>
+<td><input type="text" name="email" placeholder="Your Email" required /></td>
 </tr>
 
 <tr>
-<td><input type="password" name="pass" placeholder="Your Password" required /></td>
+<td><input type="text" name="password" placeholder="Your Password" required /></td>
 </tr>
 
 <tr>
-<td><button type="submit" name="btn-signup">Sign Me Up</button></td>
+<td><input type="number" name="contact" placeholder="Your Contact No" required /></td>
+</tr>
+
+<tr>
+<td><input type="date" name="DOB" placeholder="Your DOB" required /></td>
+</tr>
+
+<tr>
+<td><input type="text" name="address" placeholder="Your Address" required /></td>
+</tr>
+
+
+<tr>
+<td>Male:<input type="radio" name="gender" value= "male"/>
+	Female:<input type="radio" name="gender" value = "female"/>
+</tr>
+
+
+<tr>
+<td><button type="submit" name="signup">Sign Me Up</button></td>
 </tr>
 
 <tr>
