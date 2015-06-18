@@ -2,12 +2,13 @@
 session_start();
 include_once 'dbconnect.php';
 
-if(!isset($_SESSION['user']))
+if(!isset($_SESSION['members']))
 {
 	header("Location: index.php");
 }
 
-$res=mysql_query("SELECT * FROM user WHERE user_id=".$_SESSION['user']);
+
+$res=mysql_query("SELECT * FROM members WHERE m_id=".$_SESSION['members']);
 $userRow=mysql_fetch_array($res);
 ?>
 
@@ -26,19 +27,19 @@ $userRow=mysql_fetch_array($res);
 
 <div id="right">
 <div id="content">
-<a href > <?php echo $userRow['username']; ?></a>&nbsp;&nbsp;&nbsp;<a href="logout.php?logout">Sign Out</a>
+<a href > <?php echo $userRow['m_name']; ?></a>&nbsp;&nbsp;&nbsp;<a href="logout.php?logout">Sign Out</a>
 </div>
 </div>
 </div>
 
 <div id="menu">
 <ul>
-	<li><a href="#" class="current"><span class="home"></span>Home</a></li>
-    <li><a href="#"><span class="books"></span>Books</a></li>
-	<li><a href="#"><span class="contact us"></span>Members</a></li>
-    <li><a href="#"><span class="about us"></span>About Us</a></li>
-    <li><a href="#"><span class="contact us"></span>Contact Us</a></li>
-</ul> 
+	<li><a href="home.php?home">HOME</a></li>
+	<li><a href="viewbooks.php?viewbooks">SEARCH BOOK</a></li>
+	<li><a href="issuebook.php?issue">ISSUE BOOK</a></li>
+	<li><a href="returnORreissue.php?return">RETURN BOOK</a></li>
+	<li><a href="home.php?home">CONATCT US</a></li>
+</ul>
 </div>
 
 <br/><br/><br/><br/>
