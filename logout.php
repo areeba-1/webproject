@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['user']))
+if(!isset($_SESSION['members']))
 {
 	header("Location: index.php");
 }
 
-else if(isset($_SESSION['user'])!="")
+else if(isset($_SESSION['members'])!="")
 {
 	header("Location: home.php");
 }
@@ -14,7 +14,7 @@ else if(isset($_SESSION['user'])!="")
 if(isset($_GET['logout']))
 {
 	session_destroy();
-	unset($_SESSION['user']);
+	unset($_SESSION['members']);
 	header("Location: index.php");
 }
 ?>
