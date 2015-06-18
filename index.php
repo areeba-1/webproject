@@ -2,7 +2,7 @@
 session_start();
 include_once 'dbconnect.php';
 
-if(isset($_SESSION['user'])!="")
+if(isset($_SESSION['members'])!="")
 {
 	header("Location: home.php");
 }
@@ -10,13 +10,15 @@ if(isset($_SESSION['user'])!="")
 if(isset($_POST['login']))
 {
 	$email = mysql_real_escape_string($_POST['email']);
-	$upass = mysql_real_escape_string($_POST['pass']);
-	$res=mysql_query("SELECT * FROM user WHERE email='$email'");
+	$mpass = mysql_real_escape_string($_POST['password']);
+	$res=mysql_query("SELECT * FROM members WHERE email='$email'");
 	$row=mysql_fetch_array($res);
 	
-	if($row['password']==($upass))
+	if($row['password']==($mpass))
 	{
-		$_SESSION['user'] = $row['user_id'];
+		$_SESSION['members'] = $row['m_id'];
+		$_SESSION['start']=time();
+		$_SESSION['expire']=$_SESSION['start']+(5*60);
 		header("Location: home.php");
 	}
 	else
@@ -36,9 +38,8 @@ if(isset($_POST['login']))
 </head>
 <body>
 <center>
-
-<div id="login-form">
-<h2> User Log In Form </h2> <br/>
+  <div id="login-form">
+<h2> Member Log In Form </h2> <br/>
 <form method="post">
 
 <table align="center" width="30%" border="0">
@@ -48,7 +49,11 @@ if(isset($_POST['login']))
 </tr>
 
 <tr>
-<td><input type="password" name="pass" placeholder="Your Password" required /></td>
+<td><input type="password" name="password"  placeholder="Your Password" required /></td>
+</tr>
+
+<tr>
+<td>Remember Me:<input type="checkbox" name="rememberme" value= "1"/></td>
 </tr>
 
 <tr>
@@ -56,7 +61,7 @@ if(isset($_POST['login']))
 </tr>
 
 <tr>
-<td><a href="register.php">Sign Up Here</a></td>
+<td><a href="register.php">Don't have an account? Sign Up Here</a></td>
 </tr>
 
 </table>
