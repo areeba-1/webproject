@@ -2,7 +2,7 @@
 session_start();
 include_once 'dbconnect.php';
 
-if(isset($_SESSION['librarian'])!="")
+if(isset($_SESSION['librarians'])!="")
 {
 	header("Location: lib_home.php");
 }
@@ -10,13 +10,15 @@ if(isset($_SESSION['librarian'])!="")
 if(isset($_POST['login']))
 {
 	$email = mysql_real_escape_string($_POST['email']);
-	$lpass = mysql_real_escape_string($_POST['pass']);
-	$res=mysql_query("SELECT * FROM librarian WHERE email='$email'");
+	$lpass = mysql_real_escape_string($_POST['password']);
+	$res=mysql_query("SELECT * FROM librarians WHERE email='$email'");
 	$row=mysql_fetch_array($res);
 	
 	if($row['password']==($lpass))
 	{
-		$_SESSION['librarian'] = $row['lib_id'];
+		$_SESSION['librarians'] = $row['l_id'];
+		$_SESSION['start']=time();
+		$_SESSION['expire']=$_SESSION['start']+(10*60);
 		header("Location: lib_home.php");
 	}
 	
@@ -49,7 +51,7 @@ if(isset($_POST['login']))
 </tr>
 
 <tr>
-<td><input type="password" name="pass" placeholder="Your Password" required /></td>
+<td><input type="password" name="password" placeholder="Your Password" required /></td>
 </tr>
 
 <tr>
@@ -57,7 +59,7 @@ if(isset($_POST['login']))
 </tr>
 
 <tr>
-<td><a href="lib_register.php">Sign Up Here</a></td>
+<td><a href="lib_register.php">Don't have an account? Sign Up Here</a></td>
 </tr>
 
 </table>
