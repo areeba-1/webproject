@@ -1,63 +1,110 @@
-<?php
-session_start();
-include_once 'dbconnect.php';
-
-if(isset($_SESSION['members'])!="")
-{
-	header("Location: home.php");
-}
-
-if(isset($_POST['login']))
-{
-	$email = mysql_real_escape_string($_POST['email']);
-	$mpass = mysql_real_escape_string($_POST['password']);
-	$res=mysql_query("SELECT * FROM members WHERE email='$email'");
-	$row=mysql_fetch_array($res);
-	
-	if($row['password']==($mpass))
-	{
-		$_SESSION['members'] = $row['m_id'];
-		$_SESSION['start']=time();
-		$_SESSION['expire']=$_SESSION['start']+(5*60);
-		header("Location: home.php");
-	}
-	else
-	{
-		?>
-        <script>alert('Invalid Email or Password');</script>
-        <?php
-	}
-}
-?>
-
 <!DOCTYPE html>
 <head>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"> </script>
+<script src="script/my_script.js" type="text/javascript"> </script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>LogIn</title>
 <link rel="stylesheet" href="style.css" type="text/css" />
+
+<script>
+
+function myFunction(x) 
+{
+    x.style.background = "#F8F8FF";
+}
+
+/*
+function tryLogin() {
+
+var email = document.getElementById("semail").value;
+var pass = document.getElementById("mpass").value;
+
+var xmlhttp = null;
+if (window.XMLHttpRequest)
+xmlhttp = new XMLHttpRequest(); 
+else 
+xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+
+xmlhttp.onreadystatechange=function(){
+
+if(xmlhttp.readyState== 4){
+if(xmlhttp.status==200)
+{
+var res= xmlhttp.responseText;
+
+if(res != "True") {
+
+
+document.getElementById('flag').innerHTML=xmlhttp.responseText;
+
+setTimeout(function(){document.getElementById('flag').innerHTML=" ";},2000);}
+else
+{
+	window.location.href= "index.php;   
+}
+
+}
+}
+}
+
+xmlhttp.open('get','./views/home.php,true);
+xmlhttp.send();
+}
+*/
+
+
+jQuery(function($) 
+{
+	$("#test").submit( function () 
+	{
+		$.ajax( 
+		{
+			url:"testing.php",
+			tpye:"post",
+			data:{  email: $("#email").val(), password: $("#pass").val() },
+			success:function(data)
+			{ 
+			if(data == "Successfully Logged In") 
+			{
+				window.location.href="home.php";		 
+			} 
+			else
+				$("#error").html(data); 
+//				setTimeout(function(){document.getElementById('flag').innerHTML=" ";},2000);}
+			}
+			});
+				
+		return false;
+		});
+		
+		})(jQuery);
+
+</script>
 </head>
 <body>
 <center>
-  <div id="login-form">
+<div id="login-form">
 <h2> Member Log In Form </h2> <br/>
-<form method="post">
+<form id="test" name="test">
 
 <table align="center" width="30%" border="0">
 
 <tr>
-<td><input type="text" name="email" placeholder="Your Email" required /></td>
+<td><input type="text" onFocus="myFunction(this)" name="email" id="email" placeholder="Your Email" required /></td>
 </tr>
 
 <tr>
-<td><input type="password" name="password"  placeholder="Your Password" required /></td>
+<td><input type="password" onFocus="myFunction(this)" name="pass" id="pass" placeholder="Your Password" required /></td>
 </tr>
 
 <tr>
-<td>Remember Me:<input type="checkbox" name="rememberme" value= "1"/></td>
+<td>  <div id="error"></div>  </td>
 </tr>
 
 <tr>
-<td><button type="submit" name="login">Sign In</button></td>
+<td><button type="submit" name="login" id="login">Sign In</button></td>
 </tr>
 
 <tr>
@@ -66,7 +113,6 @@ if(isset($_POST['login']))
 
 </table>
 </form>
-</div>
-</center>
+
 </body>
 </html>
