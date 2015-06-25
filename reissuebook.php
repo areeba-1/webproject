@@ -1,4 +1,3 @@
-
 <?php
 $con = mysql_connect("localhost" ,"root" , "");
 if(!$con)
@@ -25,6 +24,12 @@ $mresult=mysql_query($bquery) or die("error".mysql_error());
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>LogIn</title>
 <link rel="stylesheet" href="style.css" type="text/css" />
+<script>
+function myFunction(x) 
+{
+    x.style.background = "#F8F8FF";
+}
+</script>
 </head>
 <body>
 <center>
@@ -36,23 +41,23 @@ $mresult=mysql_query($bquery) or die("error".mysql_error());
 <table align="center" width="30%" border="0">
 
 <tr>
-<td><input type="text" name="ISBN" placeholder="Enter ISBN" required /></td>
+<td><input type="text"  onfocus="myFunction(this)" name="ISBN" placeholder="Enter ISBN" required /></td>
 </tr>
 
 <tr>
-<td><input type="text" name="l_id" placeholder="Enter Librarian ID" required /></td>
+<td><input type="text"  onfocus="myFunction(this)" name="l_id" placeholder="Enter Librarian ID" required /></td>
 </tr>
 
 <tr>
-<td><input type="text" name="m_id" placeholder="Enter Member ID" required /></td>
+<td><input type="text"  onfocus="myFunction(this)" name="m_id" placeholder="Enter Member ID" required /></td>
 </tr>
 
 <tr>
-<td><input type="date" name="issue_date" placeholder="Enter Issue Date" required /></td>
+<td><input type="date"  onfocus="myFunction(this)" name="issue_date" placeholder="Enter Issue Date" required /></td>
 </tr>
 
 <tr>
-<td><input type="date" name="return_date" placeholder="Enter New Return Date" required /></td>
+<td><input type="date"  onfocus="myFunction(this)" name="return_date" placeholder="Enter New Return Date" required /></td>
 </tr>
 
 <tr>
