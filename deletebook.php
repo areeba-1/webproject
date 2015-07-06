@@ -18,7 +18,8 @@ if(isset($_GET['deletebook']))
 	
 	else
 	{
-		?>
+	
+	?>
         <script>alert('Something Went Wrong');</script>
         <?php
 	}
