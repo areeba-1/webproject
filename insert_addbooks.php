@@ -19,16 +19,10 @@ $pid=$_POST['p_id'];
 $cid=$_POST['c_id'];
 $bprice=$_POST['price'];
 $tcopies=$_POST['total_copies'];
-$acopies=$_POST['available_copies'];
-$img=$_FILES['b_img']['name'];
-	
-$temp_name=$_FILES['b_img']['tmp_name'];
-	
+$acopies=$_POST['available_copies'];	
 
-move_uploaded_file($temp_name,"images/$img");
-
-$sql= "insert into books(ISBN, title, edition, author, p_id, c_id, price, total_copies, available_copies, b_img) 
-Values ('$isbn','$btitle','$bedition','$bauthor','$pid','$cid','$bprice','$tcopies','$acopies','$img')";
+$sql= "insert into books(ISBN, title, edition, author, p_id, c_id, price, total_copies, available_copies) 
+Values ('$isbn','$btitle','$bedition','$bauthor','$pid','$cid','$bprice','$tcopies','$acopies')";
 if(!mysql_query($sql, $con))
 {
 die('Error' . mysql_error());
