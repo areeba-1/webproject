@@ -69,5 +69,6 @@ function myFunction(x)
 </form>
 </div>
 </center>
+
 </body>
 </html>
