@@ -1,6 +1,7 @@
-<table width ="745" align="center" bgcolor="#F5F5F5">
+<div id=view>
+<table width ="1000" align="center" bgcolor="#F5F5F5">
 <tr align="center">
-<td colspan="6"><h2>View All Books</h2></td>
+<td colspan="6"><h2>View Books</h2></td>
 </tr>
 
 
@@ -11,8 +12,11 @@
 <td>TITLE</td>
 <td>AUTHOR</td>
 <td>EDITION</td>
-<td>IMAGE</td>
+<td>PRICE</td>
+<td>TOTAL BOOKS</td>
+<td>AVAILABLE BOOKS</td>
 <td>DELETE</td>
+<td>EDIT</td>
 
 </tr>
 <?php
@@ -28,23 +32,28 @@ while($row = mysql_fetch_array($result)){
 	$b_name=$row['title'];
 	$b_author=$row['author'];
 	$b_edition=$row['edition'];
-	$b_image=$row['b_img'];
+	$b_price=$row['price'];
+	$t_copies=$row['total_copies'];
+	$a_copies=$row['available_copies'];
 	
 		$i++;
 
-
 ?>
+
 <tr align="center">
+
 <td><?php echo $i; ?></td>
-<td><?php echo $ISBN; ?>
+<td><?php echo $ISBN; ?></td>
 <td><?php echo $b_name; ?></td>
 <td><?php echo $b_author; ?></td>
 <td><?php echo $b_edition; ?></td>
+<td><?php echo $b_price; ?></td>
+<td><?php echo $t_copies; ?></td>
+<td><?php echo $a_copies; ?></td>
 
-</td>
-<td><img src="bookimg/<?php echo $b_image;  ?>" width="60" height="60"/></td>
 
 <td><a href ="delete_book.php?delete_book=<?php echo $ISBN;?>">Delete</a></td>
+<td><a href ="editbooks.php?editbooks=<?php echo $ISBN;?>">Edit</a></td>
 
 
 </tr>
@@ -52,3 +61,4 @@ while($row = mysql_fetch_array($result)){
 
 
 </table>
+</div>
