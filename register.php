@@ -37,6 +37,12 @@ if(isset($_POST['signup']))
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>SignUp</title>
 <link rel="stylesheet" href="style.css" type="text/css" />
+<script>
+function myFunction(x) 
+{
+    x.style.background = "#F8F8FF";
+}
+</script>
 </head>
 <body>
 <center>
@@ -48,27 +54,27 @@ if(isset($_POST['signup']))
 <table align="center" width="30%" border="0">
 
 <tr>
-<td><input type="text" name="m_name" placeholder="Your Name" required /></td>
+<td><input type="text" onFocus="myFunction(this)" name="m_name" placeholder="Your Name" required /></td>
 </tr>
 
 <tr>
-<td><input type="text" name="email" placeholder="Your Email" required /></td>
+<td><input type="text" onFocus="myFunction(this)" name="email" placeholder="Your Email" required /></td>
 </tr>
 
 <tr>
-<td><input type="text" name="password" placeholder="Your Password" required /></td>
+<td><input type="text" onFocus="myFunction(this)" name="password" placeholder="Your Password" required /></td>
 </tr>
 
 <tr>
-<td><input type="number" name="contact" placeholder="Your Contact No" required /></td>
+<td><input type="number" onFocus="myFunction(this)" name="contact" placeholder="Your Contact No" required /></td>
 </tr>
 
 <tr>
-<td><input type="date" name="DOB" placeholder="Your DOB" required /></td>
+<td><input type="date" onFocus="myFunction(this)" name="DOB" placeholder="Your DOB" required /></td>
 </tr>
 
 <tr>
-<td><input type="text" name="address" placeholder="Your Address" required /></td>
+<td><input type="text" onFocus="myFunction(this)" name="address" placeholder="Your Address" required /></td>
 </tr>
 
 
