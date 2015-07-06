@@ -25,5 +25,4 @@ if(isset($_SESSION['members'])!="")
 	{
 		echo "Successfully Logged In";
 	}
-
 ?>
