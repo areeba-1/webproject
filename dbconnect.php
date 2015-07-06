@@ -1,10 +1,10 @@
 <?php
-if(!mysql_connect("sql313.base.pk","basep_16339368","base123"))
+if(!mysql_connect("localhost","root",""))
 {
 	die('could not connect'.mysql_error());
 }
 
-if(!mysql_select_db("basep_16339368_db"))
+if(!mysql_select_db("Web_LMS"))
 {
 	die('could not connect'.mysql_error());
 }
