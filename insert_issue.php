@@ -28,13 +28,18 @@ while ($row = mysql_fetch_array($result))
 
 if($borrow>0 && $fine==0)
 {
-	$sql1="insert into borrowed_by (l_id, m_id, ISBN, issue_date, return_date) values ('$lid',' $mid', 'isbn', '$i_date','$d_date')";
+	$sql1="insert into borrowed_by (l_id, m_id, ISBN, issue_date, return_date) values ('$lid',' $mid', '$isbn', '$i_date','$r_date')";
 	
 	$sql2="UPDATE members 
 	
 	SET borrow_attempts=borrow_attempts-1
 	where m_id='$mid'";
-	
+		
+	if(!mysql_query($sql1, $con))
+	{
+		die('Error' . mysql_error());
+	}
+
 	if(!mysql_query($sql2, $con))
 	{
 		die('Error' . mysql_error());
