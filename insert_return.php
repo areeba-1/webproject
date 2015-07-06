@@ -34,7 +34,7 @@ if(!mysql_query($sql2, $con))
 die('Error' . mysql_error());
 }
 
-	echo "<script>alert('BOOK RETURNED')</script>";
+	echo "<script>alert('Book returned')</script>";
 	echo "<script>window.open('lib_home.php','_self')</script>";
 		
 		
