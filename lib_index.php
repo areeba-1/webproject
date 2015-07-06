@@ -18,7 +18,7 @@ if(isset($_POST['login']))
 	{
 		$_SESSION['librarians'] = $row['l_id'];
 		$_SESSION['start']=time();
-		$_SESSION['expire']=$_SESSION['start']+(10*60);
+		$_SESSION['expire']=$_SESSION['start']+(24*60*60);
 		header("Location: lib_home.php");
 	}
 	
@@ -36,6 +36,14 @@ if(isset($_POST['login']))
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>LogIn</title>
 <link rel="stylesheet" href="style.css" type="text/css" />
+
+<script>
+function myFunction(x) 
+{
+    x.style.background = "#F8F8FF";
+}
+</script>
+
 </head>
 <body>
 <center>
@@ -47,11 +55,11 @@ if(isset($_POST['login']))
 <table align="center" width="30%" border="0">
 
 <tr>
-<td><input type="text" name="email" placeholder="Your Email" required /></td>
+<td><input type="text" onFocus="myFunction(this)" name="email" placeholder="Your Email" required /></td>
 </tr>
 
 <tr>
-<td><input type="password" name="password" placeholder="Your Password" required /></td>
+<td><input type="password" onFocus="myFunction(this)" name="password" placeholder="Your Password" required /></td>
 </tr>
 
 <tr>
