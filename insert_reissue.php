@@ -34,5 +34,6 @@ die('Error' . mysql_error());
 		
 mysql_close($con);
 ?>
+
 </body>
 </html>
